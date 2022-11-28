@@ -1,57 +1,52 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  const navigatePage = () => router.push("/add-new");
+
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js 13!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://beta.nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js 13</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
+    <>
+      <main className="main_container absolute top-10 left-44  w-[calc(100%_-_20rem)] pl-[30px] ">
+        <div className=" flex  items-center justify-between mb-[50px]">
+          <div className="invoice_header_logo">
+            <h3 className="text-white">Invoices</h3>
+            <p className="text-gray-400">There is a total of 7 Invoices</p>
+          </div>
+          <button
+            onClick={navigatePage}
+            className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-300 hover:text-gray-800"
           >
-            <h2>Examples &rarr;</h2>
-            <p>Explore the Next.js 13 playground.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates/next.js/app-directory?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
+            AddNew
+          </button>
+        </div>
+        <div className="invoice_container text-white pb-[200px]">
+          {/* Invoice Item */}
+          <Link href={`invoices/id`} passHref>
+            <div className="invoice_item flex items-center justify-between p-[30px] rounded-xl mb-8  text-white bg-gray-800 cursor-pointer hover:bg-gray-600  hover:border solid border-violet-500 focus:outline-none focus:ring focus:ring-violet-300">
+              <div>
+                <h5 className="invoice_id text-sm">RT59F0</h5>
+              </div>
+              <div>
+                <h6 className="invoice_client text-sm">John Doe</h6>
+              </div>
+              <div>
+                <p className="invoice_created text-md">29-07-2022</p>
+              </div>
+              <div>
+                <h3 className="invoice_total text-lg">£500</h3>
+              </div>
+              <div>
+                <button className="px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-300 hover:text-gray-800">
+                  pending
+                </button>
+              </div>
+            </div>
+          </Link>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+    </>
+  );
 }
