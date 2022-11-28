@@ -1,10 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 const AddNewPage = () => {
   const router = useRouter();
+  const [items, setItems] = useState([]);
+
+  // add product item
+
+  const addItem = () => {
+    setItems([...items, { name: "", quantity: 0, price: 0, total: 0 }]);
+    console.log(items);
+  };
 
   return (
     <div className="main_container absolute top-10 left-44  w-[calc(100%_-_20rem)] pl-[30px] ">
@@ -163,11 +171,17 @@ const AddNewPage = () => {
               </div>
             </div>
           </div>
-          <button className="px-3 py-2 bg-green-600 text-white rounded-2xl hover:bg-green-300 hover:text-gray-800">
+          <button
+            onClick={addItem}
+            className="px-3 py-2 bg-green-600 text-white rounded-2xl hover:bg-green-300 hover:text-gray-800"
+          >
             Add New Item
           </button>
           <div className="new_invoice_btns mt-[100px] flex justify-between">
-            <button className="edit_button bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800 w-[150px]">
+            <button
+              onClick={() => router.push("/")}
+              className="edit_button bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800 w-[150px]"
+            >
               Discard
             </button>
             <div>
