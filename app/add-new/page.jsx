@@ -11,7 +11,14 @@ const AddNewPage = () => {
 
   const addItem = () => {
     setItems([...items, { name: "", quantity: 0, price: 0, total: 0 }]);
-    console.log(items);
+  };
+
+  // delete product item
+
+  const deleteItem = (i) => {
+    const inputData = [...items];
+    inputData.splice(i, 1);
+    setItems(inputData);
   };
 
   // handler change
@@ -178,7 +185,10 @@ const AddNewPage = () => {
                       {item.total}
                     </h5>
                   </div>
-                  <button className="edit_btn bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800">
+                  <button
+                    onClick={() => deleteItem(i)}
+                    className="edit_btn bg-red-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-red-300 hover:text-gray-800"
+                  >
                     Delete
                   </button>
                 </div>
