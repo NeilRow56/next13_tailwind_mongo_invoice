@@ -3,23 +3,9 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-const AddNewPage = () => {
+const EditItem = () => {
   const router = useRouter();
   const [items, setItems] = useState([]);
-
-  const senderStreet = useRef("");
-  const senderCity = useRef("");
-  const senderPostalCode = useRef("");
-  const senderCountry = useRef("");
-  const clientName = useRef("");
-  const clientEmail = useRef("");
-  const clientStreet = useRef("");
-  const clientCity = useRef("");
-  const clientPostalCode = useRef("");
-  const clientCountry = useRef("");
-  const description = useRef("");
-  const createdAt = useRef("");
-  const paymentTerms = useRef("");
 
   // add product item
 
@@ -35,9 +21,6 @@ const AddNewPage = () => {
     setItems(inputData);
   };
 
-  // Total amount of all product items
-  const totalAmount = items.reduce((acc, curr) => acc + curr.total, 0);
-
   // handler change
   const handlerChange = (event, i) => {
     const { name, value } = event.target;
@@ -51,7 +34,7 @@ const AddNewPage = () => {
     <div className="main_container absolute top-10 left-44  w-[calc(100%_-_20rem)] pl-[30px] ">
       <div className="new_invoice w-4/6 mx-auto">
         <div className="new_invoice-header mb-7">
-          <h3 className="text-white font-bold text-2xl">New Invoice</h3>
+          <h3 className="text-white font-bold text-2xl">Edit #RT5840</h3>
         </div>
 
         {/* New Invoice Body */}
@@ -63,7 +46,6 @@ const AddNewPage = () => {
               <p className="text-gray-400 ">Street Address</p>
               <input
                 type="text"
-                ref={senderStreet}
                 className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
               />
             </div>
@@ -72,7 +54,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">City</p>
                 <input
                   type="text"
-                  ref={senderCity}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
                 />
               </div>
@@ -80,7 +61,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">Post Code</p>
                 <input
                   type="text"
-                  ref={senderPostalCode}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3 "
                 />
               </div>
@@ -88,7 +68,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">Country</p>
                 <input
                   type="text"
-                  ref={senderCountry}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
                 />
               </div>
@@ -102,7 +81,6 @@ const AddNewPage = () => {
               <p className="text-gray-400 ">Client Name</p>
               <input
                 type="text"
-                ref={clientName}
                 className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
               />
             </div>
@@ -110,7 +88,6 @@ const AddNewPage = () => {
               <p className="text-gray-400 ">Client Email</p>
               <input
                 type="email"
-                ref={clientEmail}
                 className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
               />
             </div>
@@ -118,7 +95,6 @@ const AddNewPage = () => {
               <p className="text-gray-400 ">Street Address</p>
               <input
                 type="text"
-                ref={clientStreet}
                 className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
               />
             </div>
@@ -127,7 +103,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">City</p>
                 <input
                   type="text"
-                  ref={clientCity}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
                 />
               </div>
@@ -135,7 +110,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">Post Code</p>
                 <input
                   type="text"
-                  ref={clientPostalCode}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3 "
                 />
               </div>
@@ -143,7 +117,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">Country</p>
                 <input
                   type="text"
-                  ref={clientCountry}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
                 />
               </div>
@@ -153,7 +126,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">Invoice Date</p>
                 <input
                   type="date"
-                  ref={createdAt}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
                 />
               </div>
@@ -161,7 +133,6 @@ const AddNewPage = () => {
                 <p className="text-gray-400">Payment Terms</p>
                 <input
                   type="text"
-                  ref={paymentTerms}
                   className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3 "
                 />
               </div>
@@ -170,7 +141,6 @@ const AddNewPage = () => {
               <p className="text-gray-400 ">Project Description</p>
               <input
                 type="text"
-                ref={description}
                 className="w-full h-10 rounded-md mb-7 bg-gray-600 pl-3"
               />
             </div>
@@ -231,19 +201,17 @@ const AddNewPage = () => {
           >
             Add New Item
           </button>
-          <div className="new_invoice_btns mt-[100px] flex justify-between">
-            <button
-              onClick={() => router.push("/")}
-              className="edit_button bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800 w-[150px]"
-            >
-              Discard
-            </button>
+          <div className="new_invoice_btns mt-[100px] flex justify-end">
             <div>
-              <button className="draft_btn bg-[#1f2c3f] h-10 mt-2 mr-[30px] w-[150px] text-white px-3 py-1 rounded-md border border-violet-600 hover:bg-blue-300 hover:text-gray-800">
-                Save as Draft
+              <button
+                //  Path to change later to invoices/invoiceId
+                onClick={() => router.push("/")}
+                className="draft_btn bg-[#1f2c3f] h-10 mt-2 mr-[30px] w-[150px] text-white px-3 py-1 rounded-md border border-violet-600 hover:bg-blue-300 hover:text-gray-800"
+              >
+                Cancel
               </button>
               <button className="mark_as_btn bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800 w-[150px]">
-                Send & Save
+                Save Changes
               </button>
             </div>
           </div>
@@ -253,4 +221,4 @@ const AddNewPage = () => {
   );
 };
 
-export default AddNewPage;
+export default EditItem;
