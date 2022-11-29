@@ -14,6 +14,15 @@ const AddNewPage = () => {
     console.log(items);
   };
 
+  // handler change
+  const handlerChange = (event, i) => {
+    const { name, value } = event.target;
+    const list = [...items];
+    list[i][name] = value;
+    list[i]["total"] = list[i]["quantity"] * list[i]["price"];
+    setItems(list);
+  };
+
   return (
     <div className="main_container absolute top-10 left-44  w-[calc(100%_-_20rem)] pl-[30px] ">
       <div className="new_invoice w-4/6 mx-auto">
@@ -131,45 +140,50 @@ const AddNewPage = () => {
           </div>
           {/* Invoice Product Items */}
 
-          <div className="invoice_items">
+          <div className="invoice_items ">
             <h3 className="text-white text-xl font-semibold">Item List</h3>
-            <div className="item ">
-              <div className="flex flex-row w-full items-center justify-between">
-                <div>
-                  <p className="text-gray-400">Item Name</p>
-                  <input
-                    type="text"
-                    name="name"
-                    className="w-full h-10 rounded-md mb-7 mt-3 bg-gray-600 pl-3 "
-                  />
+            {items?.map((item, i) => (
+              <div className="item " key={i}>
+                <div className="flex flex-row w-full items-center justify-between text-white">
+                  <div>
+                    <p className="text-gray-400">Item Name</p>
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={(e) => handlerChange(e, i)}
+                      className="w-full h-10 rounded-md mb-7 mt-3 bg-gray-600 pl-3 "
+                    />
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Qty</p>
+                    <input
+                      type="text"
+                      name="quantity"
+                      onChange={(e) => handlerChange(e, i)}
+                      className="w-full h-10 rounded-md mb-7 mt-3 bg-gray-600 pl-3 "
+                    />
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Price</p>
+                    <input
+                      type="number"
+                      name="price"
+                      onChange={(e) => handlerChange(e, i)}
+                      className="w-full h-10 rounded-md mb-7 mt-3 bg-gray-600 pl-3 "
+                    />
+                  </div>
+                  <div>
+                    <p className="text-gray-400 ">Total</p>
+                    <h5 className="text-white font-bold text-2xl pb-7 pt-3">
+                      {item.total}
+                    </h5>
+                  </div>
+                  <button className="edit_btn bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800">
+                    Delete
+                  </button>
                 </div>
-                <div>
-                  <p className="text-gray-400">Qty</p>
-                  <input
-                    type="text"
-                    name="quantity"
-                    className="w-full h-10 rounded-md mb-7 mt-3 bg-gray-600 pl-3 "
-                  />
-                </div>
-                <div>
-                  <p className="text-gray-400">Price</p>
-                  <input
-                    type="number"
-                    name="price"
-                    className="w-full h-10 rounded-md mb-7 mt-3 bg-gray-600 pl-3 "
-                  />
-                </div>
-                <div>
-                  <p className="text-gray-400 ">Total</p>
-                  <h5 className="text-white font-bold text-2xl pb-7 pt-3">
-                    £450
-                  </h5>
-                </div>
-                <button className="edit_btn bg-blue-600 h-10 mt-2 text-white px-3 py-1 rounded-md hover:bg-blue-300 hover:text-gray-800">
-                  Delete
-                </button>
               </div>
-            </div>
+            ))}
           </div>
           <button
             onClick={addItem}
